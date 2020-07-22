@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face{
+    font-family: 'enagenaFont';
+    src: url('assets/kg_happy/KGHAPPY.ttf');
+}
+.toolbarHome{
+    font-family: enagenaFont;
+    font-size: 30px;
+    padding-left:10px;
+}
+.toolbarNames{
+    font-family: enagenaFont;
+    font-size: 30px;
+    padding-left:50px;
+}
