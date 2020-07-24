@@ -11,5 +11,8 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  twitchSubscribe(){
+    window.open("https://www.twitch.tv/products/enagena");
+   
+  }
 }
