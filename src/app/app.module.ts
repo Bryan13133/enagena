@@ -14,6 +14,8 @@ import { CalendarComponent } from './Components/CalendarComponent/calendar/calen
 import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
   interactionPlugin
@@ -35,7 +37,9 @@ FullCalendarModule.registerPlugins([
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FullCalendarModule
+    FullCalendarModule,
+    BrowserAnimationsModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
