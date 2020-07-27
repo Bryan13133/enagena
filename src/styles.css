@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import 'bootstrap/dist/css/bootstrap-grid.min.css';
 @font-face{
     font-family: 'enagenaFont';
     src: url('assets/kg_happy/KGHAPPY.ttf');
@@ -13,5 +15,25 @@
     font-size: 30px;
     padding-left:50px;
 }
+.toolbarNamesText{
+    font-family: enagenaFont;
+    font-size: 20px;
+    padding-left:0px;
+}
+.toolbarNamesText1{
+    font-family: enagenaFont;
+    font-size: 15px;
+    padding-left:0px;
+}
+.mat-form-field-empty.mat-form-field-label {
+    color: white;
+}
+.mat-form-field-underline {
+    background-color: white;
+}
+::ng-deep.mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: white !important;;
+   }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,1 +1,12 @@
-<p>account works!</p>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="row container" style="margin-left: auto;margin-top: 5%;margin-right: auto; ">
+    <div class="col-md-5" >
+        <app-socialmedia></app-socialmedia>
+    </div>
+    <div class="col-md-7">
+        <app-login *ngIf="!loadComponent" (signUpClick)="loadSignUp($event)"></app-login>
+        <app-signup *ngIf="loadComponent"  ></app-signup>
+    </div>
+ 
+</div>

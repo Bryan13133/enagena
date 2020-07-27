@@ -16,6 +16,15 @@ import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
+import {  MatFormFieldModule} from '@angular/material/form-field';
+import {FormsModule} from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { LoginComponent } from './Components/LoginComponent/login/login.component';
+import { SignupComponent } from './Components/SignupComponent/signup/signup.component';
+import { SocialmediaComponent } from './Components/SocialMediaLoginComponent/socialmedia/socialmedia.component';
+
+
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
   interactionPlugin
@@ -31,7 +40,10 @@ FullCalendarModule.registerPlugins([
     NotFoundComponent,
     ToolbarComponent,
     FooterComponent,
-    CalendarComponent
+    CalendarComponent,
+    LoginComponent,
+    SignupComponent,
+    SocialmediaComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +51,11 @@ FullCalendarModule.registerPlugins([
     NgbModule,
     FullCalendarModule,
     BrowserAnimationsModule,
-    MatSliderModule
+    MatSliderModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

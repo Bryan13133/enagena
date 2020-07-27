@@ -1,0 +1,66 @@
+
+    <div class="card" style="background-color:white;min-height: 378px;">
+        <div class="card-body">
+            <div class="toolbarNames" style="text-align: center;color: black;">
+                Iniciar sesión 
+            </div>
+            <p class="toolbarNamesText1" style="color: black;text-align: center;margin-top: 2%;">No tienes una cuenta?  <a class="btn" (click)="signClick()" style="color: #007bff;">Registrate aquí!</a> </p>
+          <form>
+              <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="email" class="toolbarNamesText1" style="color: black;">Correo</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-envelope"></i></div>
+                              </div>
+                            <input type="email" class="form-control" id="email" placeholder="Ex. email@gmail.com">
+                          </div>
+                    </div>
+                 
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="password" class="toolbarNamesText1"style="color:black">Contraseña</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-lock"></i></div>
+                            </div>
+                            <input [type]= "(showPass) ? 'text': 'password'" class="form-control" id="password" placeholder="Contraseña" required>
+                            <div class=" btn input-group-text" type="button" id="button-pass" (click)="showPass = !showPass">
+                                <svg *ngIf="!showPass; else show" width="1em" height="1em" viewBox="0 0 16 16" class="fa fa-eye-fill" fill="currentColor"
+                                  xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                  <path fill-rule="evenodd"
+                                    d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                                </svg>
+                                <ng-template #show>
+                                  <svg  width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-eye-slash-fill" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                      d="M10.79 12.912l-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z" />
+                                    <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708l-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829z" />
+                                    <path fill-rule="evenodd" d="M13.646 14.354l-12-12 .708-.708 12 12-.708.708z" />
+                                  </svg>
+                                </ng-template>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="row" style="margin-top: 2%;">
+                  <div class="col-md-12">
+                    <a href="#" class="toolbarNamesText1">He olvidado mi contraseña!!</a>
+                  </div>
+               
+              </div>
+              <div class="row" style="margin-top: 5%;">
+                  <div class="col-md-12" style="text-align: center;">
+                    <button class="btn btn-dark toolbarNamesText1" style="background-color: #492424;">Iniciar Seción</button>
+                  </div>
+              </div>
+          </form>
+        </div>
+    </div>
