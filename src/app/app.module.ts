@@ -23,7 +23,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './Components/LoginComponent/login/login.component';
 import { SignupComponent } from './Components/SignupComponent/signup/signup.component';
 import { SocialmediaComponent } from './Components/SocialMediaLoginComponent/socialmedia/socialmedia.component';
-
+import {ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -55,7 +57,9 @@ FullCalendarModule.registerPlugins([
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    FormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

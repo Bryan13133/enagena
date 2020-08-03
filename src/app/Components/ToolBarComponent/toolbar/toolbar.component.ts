@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-
+  isLogged = false;
+  showBar= true;
   constructor() { }
 
   ngOnInit(): void {
@@ -14,5 +15,8 @@ export class ToolbarComponent implements OnInit {
   twitchSubscribe(){
     window.open("https://www.twitch.tv/products/enagena");
    
+  }
+  showNavBar(){
+    this.showBar = this.showBar === false ? true : false; 
   }
 }

@@ -14,4 +14,7 @@ export class AccountComponent implements OnInit {
   loadSignUp(value:any){
     this.loadComponent = true;
   }
+  loadlogIn(value:any){
+    this.loadComponent = false;
+  }
 }
