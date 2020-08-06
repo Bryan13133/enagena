@@ -1,9 +1,12 @@
+import { AlertsService } from './../../../Services/Alerts/alerts.service';
+import { AuthServiceService } from './../../../Services/Auth/auth-service.service';
 import { SignupServiceService } from './../../../Services/SignUp/signup-service.service';
 import { Router } from '@angular/router';
 import { User } from './../../../Interfaces/user';
 import { Component, OnInit, enableProdMode, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { emailValidator } from 'src/app/Utilities/validators';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
@@ -15,10 +18,13 @@ export class SignupComponent implements OnInit {
   showPass= false;
   showConfirmPass = false;
   form: FormGroup;
+ 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private signUpService: SignupServiceService
+    private signUpService: SignupServiceService,
+    private authService: AuthServiceService,
+    private alertService: AlertsService
   ) { }
   loginClick(){
     this.loginUpClick.emit();
@@ -30,29 +36,29 @@ export class SignupComponent implements OnInit {
   onSubmit({ valid, value }: { valid: boolean, value: User }) {
     let result;
     let user: User;
+    delete value['confirmPassword'];
     if (valid) {
       this.signUpService.createUser(value).subscribe(data=>{
           if (data) {
-            result = {
-              success: 'User created successfully!'
-            };
-          }else{
-            result = {
-              error: 'There was a problem, try again!'
-            };
+            this.authService.setUser(data);
+            this.router.navigate(['home'], {}); 
+            this.form = this.createForm();
           }
-          console.log(result);
-      this.router.navigate(['login'], {
-        queryParams: data
-      });
-      });
-     
+      },error =>{
+        console.log("Error: "+error);
+        if (error.status == 406) {
+          this.alertService.emailExist();
+        }else{
+          this.alertService.errorAlert();
+        }
+      }
+      );
     }
   }
   createForm(){
     return this.fb.group({
       name: [''],
-      lastName: [''],
+      lastname: [''],
       role: ['user'],
       password:['',[Validators.required,Validators.minLength(8)]],
       confirmPassword: ['',[Validators.required,Validators.minLength(8)]],

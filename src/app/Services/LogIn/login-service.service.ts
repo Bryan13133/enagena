@@ -8,13 +8,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginServiceService {
-  url = 'http://localhost:3000';
   constructor(
     private dataBase:DatabaseService
   ) { }
-getUser(user: User){
-  return this.dataBase.getUser(user);
-  
+getUser(user: User):Observable<User>{
+  return this.dataBase.login(user);
 }
-
 }

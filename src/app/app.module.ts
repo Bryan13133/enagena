@@ -26,6 +26,7 @@ import { SocialmediaComponent } from './Components/SocialMediaLoginComponent/soc
 import {ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { BnNgIdleService } from 'bn-ng-idle';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -61,7 +62,7 @@ FullCalendarModule.registerPlugins([
     HttpClientModule,
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [BnNgIdleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

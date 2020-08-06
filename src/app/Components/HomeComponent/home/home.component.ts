@@ -1,3 +1,6 @@
+import { AlertsService } from './../../../Services/Alerts/alerts.service';
+import { User } from './../../../Interfaces/user';
+import { AuthServiceService } from './../../../Services/Auth/auth-service.service';
 
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
@@ -8,12 +11,27 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   private twitter: any;
-  constructor(private _router: Router) { 
+  isLogged: boolean = false;
+  constructor(
+    private _router: Router,
+    private authService:AuthServiceService,
+    private alertsService: AlertsService
+    ) { 
     this.initTwitterWidget();
   }
 
   ngOnInit(): void {  
+    if (this.authService.getUser()) {
+      this.isLogged = true;
+      if (this.authService.getCounter() != "1") {
+        this.alertsService.welcomeAlert(this.authService.getUser());
+        this.authService.setCounter("1");
+      }
+    }
   }
+
+  
+
   initTwitterWidget() {
     this.twitter = this._router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {

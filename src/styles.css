@@ -5,6 +5,11 @@
     font-family: 'enagenaFont';
     src: url('assets/kg_happy/KGHAPPY.ttf');
 }
+.iconEnagena {
+    background-image: url('assets/enagenaName.png');
+    width: 100%;
+    height: 100%;
+}
 .toolbarHome{
     font-family: enagenaFont;
     font-size: 25px;
@@ -31,6 +36,8 @@
 .mat-form-field-underline {
     background-color: white;
 }
+
+
 ::ng-deep.mat-form-field-ripple {
     /*change color of underline when focused*/
     background-color: white !important;;

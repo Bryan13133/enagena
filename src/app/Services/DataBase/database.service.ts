@@ -1,3 +1,4 @@
+import { AlertsService } from './../Alerts/alerts.service';
 import { User } from './../../Interfaces/user';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
@@ -11,8 +12,10 @@ import { retry, catchError } from 'rxjs/operators';
 export class DatabaseService {
   url = 'localhost:8080/api/enagena';
   constructor(
-    private http:HttpClient
+    private http:HttpClient,
+    
   ) { }
+
   handleErros(error: HttpErrorResponse){
     let errorMessage= 'Unknown error!';
     if (error.error instanceof ErrorEvent) {
@@ -20,16 +23,20 @@ export class DatabaseService {
     }else{
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    window.alert(errorMessage);
     return throwError(errorMessage);
   }
   login(user:User):Observable<User>{
-    return this.http.get<User>(`${this.url}/login`).pipe(catchError(this.handleErros));
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('Access-Control-Allow-Origin','*')
+    .set('Access-Control-Allow-Methods','GET,POST');
+    return this.http.post<any>('http://localhost:8080/api/enagena/login',user,{headers:headers});
   }
   createUser(user:User):Observable<User>{
-    const headers = { 'Authorization': 'Bearer my-token','Access-Control-Allow-Origin':'*'};
-    return this.http.post<User>(`${this.url}/register`,JSON.stringify(user),{headers:headers}).pipe(
-      catchError(this.handleErros)
-      );
+    const headers = new HttpHeaders()
+          .set('Content-Type', 'application/json')
+          .set('Access-Control-Allow-Origin','*')
+          .set('Access-Control-Allow-Methods','GET,POST');
+    return this.http.post<any>('http://localhost:8080/api/enagena/register',user,{headers:headers});
   }
 }

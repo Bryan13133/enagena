@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthServiceService } from 'src/app/Services/Auth/auth-service.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -8,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class ToolbarComponent implements OnInit {
   isLogged = false;
   showBar= true;
-  constructor() { }
+  constructor(private authService:AuthServiceService) { }
 
   ngOnInit(): void {
+    if (this.authService.getUser()) {
+      this.isLogged = true;
+    }
   }
   twitchSubscribe(){
     window.open("https://www.twitch.tv/products/enagena");
@@ -18,5 +22,9 @@ export class ToolbarComponent implements OnInit {
   }
   showNavBar(){
     this.showBar = this.showBar === false ? true : false; 
+  }
+
+  logOut(){
+    this.authService.logOut();
   }
 }
