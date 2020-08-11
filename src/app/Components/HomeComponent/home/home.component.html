@@ -12,11 +12,166 @@
     </div>
 </div>
 <div class="row" style="padding-left: 3%;padding-right: 3%; margin-top: 2%;">
-  <div class="col-md-7" style="margin-top: 3%;background-color: white; height: 590px;">
-    <app-calendar></app-calendar>
+  <div class="col-md-7" style="margin-top: 3%; height: 590px;">
+    <div class="card" style="height: 590px;">
+      <div class="row">
+        <div class="col-12">
+          <full-calendar [options]="calendarOptions"  ></full-calendar>
+        </div>
+      </div>
+      <div class="row" style="padding-top: 20px;" *ngIf="isLogged && isAdmin">
+        <div class="col-6">
+          <button type="button" class="btn pull-left"(click)="open(content)" style="background-color: #492424; color: white;font-family:enagenaFont;">Nuevo Evento</button>
+        </div>
+        <div class="col-6 " >
+          <button type="button" class="btn pull-right"(click)="open(events)" style="background-color: #492424; color: white;font-family:enagenaFont;">Eventos</button>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="col-md-5"style="margin-top: 3%;">
     <a class="twitter-timeline" data-width="650" data-height="590" data-theme="dark" href="https://twitter.com/ena_gena?ref_src=twsrc%5Etfw">Tweets by ena_gena</a>
   </div>
 </div>
 
+
+<div class="card">
+  <ng-template #events id="content" let-c="close" let-d="dismiss">
+    <div class="modal-header">
+     
+      <h4 class="modal-title" id="modal-basic-title" style="font-family:enagenaFont;">Eventos</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+    </div>  
+    <div class="modal-body">
+     
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Evento</th>
+          <th scope="col">Inicia</th>
+          <th scope="col">Termina</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let event of eventsCalendar">
+          <th scope="row">{{ event.id }}</th>
+          <td>{{ event.title}}</td>
+          <td>{{ event.start}}</td>
+          <td>{{ event.end}}</td>
+          <td><button class="btn"><i class="fa fa-pencil" (click)="d('Cross click');editEventModal(editEvent,event.title,event.start,event.end,event.id) "></i></button></td>
+          <td><button class="btn"><i class="fa fa-trash"(click)="deleteEvent(event.id)"></i></button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </ng-template>
+</div>
+<div class="card">
+  <ng-template #content id="content" let-c="close" let-d="dismiss">
+    <div class="modal-header">
+     
+      <h4 class="modal-title" id="modal-basic-title" style="font-family:enagenaFont;">Eventos</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+    </div>  
+    <div class="modal-body">
+      <form [formGroup]="form" novalidate (submit)="onSubmit(form)">
+        <div class="row">
+            <div class="col-md-12">
+                <label for="title" class="toolbarNamesText1" style="color: black;">Evento</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-book"></i></div>
+                      </div>
+                    <input type="text" formControlName="title" class="form-control" id="title">
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label for="start" class="toolbarNamesText1"style="color:black">Fecha Inicial</label>
+                <div class="input-group">
+                    <input type="datetime-local" formControlName="start" class="form-control" id="start" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+              <label for="end" class="toolbarNamesText1"style="color:black">Fecha Final</label>
+              <div class="input-group">
+                  <input type="datetime-local" formControlName="end" class="form-control" id="end" required>
+                  
+              </div>
+          </div>
+      </div>
+      <div class="row" style="margin-top: 5%;">
+          <div class="col-md-12" style="text-align: center;">
+            <button class="btn btn-dark toolbarNamesText1" style="background-color: #492424;" [disabled]="form.invalid">Guardar</button>
+          </div>
+      </div>
+  </form>
+    
+    </div>
+
+  </ng-template>
+</div>
+<div class="card">
+  <ng-template #editEvent id="content" let-c="close" let-d="dismiss">
+    <div class="modal-header">
+     
+      <h4 class="modal-title" id="modal-basic-title" style="font-family:enagenaFont;">Editar Evento</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+    </div>  
+    <div class="modal-body">
+      <form [formGroup]="editForm" novalidate (submit)="editar(editForm)">
+        <div class="row">
+            <div class="col-md-12">
+                <label for="title" class="toolbarNamesText1" style="color: black;">Evento</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-book"></i></div>
+                      </div>
+                    <input type="text" formControlName="title" class="form-control" id="title">
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label for="start" class="toolbarNamesText1"style="color:black">Fecha Inicial</label>
+                <div class="input-group">
+                    <input type="datetime-local" formControlName="start" class="form-control" id="start" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+              <label for="end" class="toolbarNamesText1"style="color:black">Fecha Final</label>
+              <div class="input-group">
+                  <input type="datetime-local" formControlName="end" class="form-control" id="end" required>
+                  
+              </div>
+          </div>
+      </div>
+      <div class="row" style="margin-top: 5%;">
+          <div class="col-md-12" style="text-align: center;">
+            <button class="btn btn-dark toolbarNamesText1" style="background-color: #492424;">Actualizar</button>
+          </div>
+      </div>
+  </form>
+    
+    </div>
+
+  </ng-template>
+</div>

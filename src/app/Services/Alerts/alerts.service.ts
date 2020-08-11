@@ -8,14 +8,15 @@ export class AlertsService {
 
   constructor() { }
 
-  successAlert(){
+  successAlert(title:string,text:string){
     Swal.fire({
-      title: 'Error!',
-      text: 'Do you want to continue',
-      icon: 'error',
-      confirmButtonText: 'Cool'
+      title: title,
+      text: text,
+      icon: 'success',
+      confirmButtonText: 'Ok'
     });
   }
+
   welcomeAlert(user:User){
     Swal.fire({
       title: 'Bienvenido a enagena '+user.name+" "+user.lastname,

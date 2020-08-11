@@ -31,6 +31,19 @@ getUser(){
     return null;
   }
 }
+setRole(role){
+  let user_string = JSON.stringify(role);
+localStorage.setItem("role",user_string);
+}
+getRole(){
+  let user_string = localStorage.getItem("role");
+  if (user_string != null) {
+    let role = JSON.parse(user_string);
+    return role;
+  }else{
+    return null;
+  }
+}
 getCounter(){
   return localStorage.getItem("counter");
 }

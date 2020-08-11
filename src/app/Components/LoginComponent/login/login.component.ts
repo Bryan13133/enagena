@@ -33,8 +33,13 @@ form: FormGroup;
     if (valid) {
       this.logIn.getUser(value).subscribe(data=>{
           if (data) {
+            console.log(data);
             this.authService.setUser(data);
-            this.router.navigate(['home'], {}); 
+            this.authService.setRole(data.role);
+            
+            this.router.navigate(['home']).then(()=>{
+              window.location.reload();
+            }); 
             this.form = this.createForm();
           }
       },error =>{

@@ -11,7 +11,7 @@ export class ToolbarComponent implements OnInit {
   showBar= true;
   constructor(private authService:AuthServiceService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     if (this.authService.getUser()) {
       this.isLogged = true;
     }

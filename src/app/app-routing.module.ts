@@ -1,7 +1,6 @@
 import { NotFoundComponent } from './Components/NotFoundComponent/not-found/not-found.component';
 import { StoreComponent } from './Components/StoreComponent/store/store.component';
 import { AccountComponent } from './Components/AccountComponent/account/account.component';
-import { SubscribeComponent } from './Components/SubscribeComponent/subscribe/subscribe.component';
 import { HomeComponent } from './Components/HomeComponent/home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -15,10 +14,6 @@ const routes: Routes=[
   {
     path: 'home',
     component: HomeComponent
-  },
-  {
-    path: 'subscribe',
-    component: SubscribeComponent
   },
   {
     path: 'account',

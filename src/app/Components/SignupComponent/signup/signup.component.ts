@@ -41,7 +41,9 @@ export class SignupComponent implements OnInit {
       this.signUpService.createUser(value).subscribe(data=>{
           if (data) {
             this.authService.setUser(data);
-            this.router.navigate(['home'], {}); 
+            this.router.navigate(['home']).then(()=>{
+              window.location.reload();
+            }); 
             this.form = this.createForm();
           }
       },error =>{
