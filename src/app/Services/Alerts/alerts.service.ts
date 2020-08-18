@@ -23,7 +23,7 @@ export class AlertsService {
       imageUrl: 'assets/enagenaName.png',
       imageWidth: 200,
       imageHeight: 100,
-      timer:3500,
+      timer:5500,
       showConfirmButton: false,
       allowOutsideClick: true
     });
